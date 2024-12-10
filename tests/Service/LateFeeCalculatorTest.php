@@ -16,7 +16,7 @@ class LateFeeCalculatorTest extends TestCase
         $this->assertEquals(1.5, $calculator->calculateLateFee($dueDate, $returnDate));
     }
 
-    public function testCalculateFeeWithoutLate()
+    public function testCalculateFeeAdTime()
     {
         $calculator = new LateFeeCalculator();
 
