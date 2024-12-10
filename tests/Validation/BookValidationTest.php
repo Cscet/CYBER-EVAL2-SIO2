@@ -7,16 +7,22 @@ use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 
 class BookValidationTest extends KernelTestCase
 {
+    private function makeBook()
+    {
+        $book = new Book();
+        $book->setTitle('Charlie et la chocolaterie');
+        $book->setIsbn('978-0316769488');
+        $book->setPublishedAt(new \DateTime('1964-07-16'));
+        return $book;
+
+    }
 
     public function testWithBlankTitle(): void
     {
         self::bootKernel();
         $validator = static ::getContainer()->get('validator');
 
-        $book = new Book();
-        $book->setTitle('');
-        $book->setIsbn('978-0316769488');
-        $book->setPublishedAt(new \DateTime('1964-07-16'));
+        $book = $this->makeBook();
         $book->setTitle('');
 
         $errors = $validator->validate($book);
@@ -30,10 +36,7 @@ class BookValidationTest extends KernelTestCase
         self::bootKernel();
         $validator = static ::getContainer()->get('validator');
 
-        $book = new Book();
-        $book->setTitle('Charlie et la chocolaterie');
-        $book->setIsbn('');
-        $book->setPublishedAt(new \DateTime('1964-07-16'));
+        $book = $this->makeBook();
         $book->setIsbn('');
 
         $errors = $validator->validate($book);
@@ -62,10 +65,7 @@ class BookValidationTest extends KernelTestCase
         self::bootKernel();
         $validator = static ::getContainer()->get('validator');
 
-        $book = new Book();
-        $book->setTitle('Charlie et la chocolaterie');
-        $book->setIsbn('978-0316769488');
-        $book->setPublishedAt(new \DateTime('1964-07-16'));
+        $book = $this->makeBook();
 
         $errors = $validator->validate($book);
 
