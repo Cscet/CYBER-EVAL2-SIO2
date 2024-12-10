@@ -53,6 +53,7 @@ class BookValidationTest extends KernelTestCase
         $book = new Book();
         $book->setTitle('Charlie et la chocolaterie');
         $book->setIsbn('978-0316769488');
+        // non insertion de la date de publication
 
         $errors = $validator->validate($book);
 
