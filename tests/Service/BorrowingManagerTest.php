@@ -15,7 +15,7 @@ class BorrowingManagerTest extends TestCase
         $client->setBorrowedBooksCount(5);
 
         $book = new Book();
-        $book->setBorrowed(true);
+        $book->setBorrowed(false);
 
         $borrowingManager = new BorrowingManager();
         $this->assertFalse($borrowingManager->canBorrowBook($client, $book));
