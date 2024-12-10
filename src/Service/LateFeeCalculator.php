@@ -9,13 +9,8 @@ class LateFeeCalculator
     {
         $daysLate = $returnDate->diff($dueDate)->days;
 
-        // Si la date de retour est avant la date d'échéance
-        if ($returnDate < $dueDate)
-        {
-            return 0;
-        }
-        // Si la date de retour est le jour de l'échéance
-        elseif ($daysLate === 0)
+        // Si la date de retour est avant la date d'échéance ou le jour même
+        if ($returnDate < $dueDate || $daysLate === 0)
         {
             return 0;
         }
